@@ -10,7 +10,7 @@ const addContact = async (data) => {
 
   contacts.push(newContact);
 
-  const contactsStr = JSON.stringify(contacts);
+  const contactsStr = JSON.stringify(contacts, null, 2);
 
   await fs.writeFile(contactsPath, contactsStr);
   return newContact;
