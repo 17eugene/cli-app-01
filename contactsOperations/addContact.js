@@ -1,6 +1,6 @@
 const { v4 } = require("uuid");
 const fs = require("fs/promises");
-const contactsPath = require("../contactsPath");
+const contactsPath = require("./contactsPath");
 
 const getAllContacts = require("./getAllContacts");
 

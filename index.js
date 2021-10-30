@@ -1,4 +1,9 @@
-const contactsOperations = require("./contacts");
+const {
+  getListOfContacts,
+  getContactById,
+  addContact,
+  deleteContactById,
+} = require("./contactsOperations");
 
 const { Command } = require("commander");
 const program = new Command();
@@ -17,26 +22,28 @@ const argv = program.opts();
 const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {
     case "list":
-      return await contactsOperations.getListOfContacts();
+      console.table(await getListOfContacts());
+      break;
 
     case "get":
-      const contact = await contactsOperations.getContactById(id);
+      const contact = await getContactById(id);
       console.log(contact);
-      return contact;
+      break;
 
     case "add":
-      const newContact = await contactsOperations.addContact({
+      const newContact = await addContact({
         name,
         email,
         phone,
+        id,
       });
       console.log(newContact);
-      return newContact;
+      break;
 
     case "remove":
-      const deletedContatct = await contactsOperations.deleteContactById(id);
+      const deletedContatct = await deleteContactById(id);
       console.log(deletedContatct);
-      return deletedContatct;
+      break;
 
     default:
       console.warn("\x1B[31m Unknown action type!");
